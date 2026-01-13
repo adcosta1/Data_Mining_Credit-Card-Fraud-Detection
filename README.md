@@ -20,7 +20,7 @@ This project tackles one of the toughest challenges in financial security: ident
 ## 🏆 Key Achievement
 95.3% fraud detection rate with Random Forest models while maintaining operational efficiency—proving that the right approach to class imbalance makes all the difference.
 
-## 💡 Why This Matters
+##💡 Why This Matters
 Credit card fraud isn't just a statistic—it's real money lost and customer trust damaged. Financial institutions face a constant battle:
 
 Catch too few fraudsters → Customers lose money, trust erodes
@@ -54,6 +54,7 @@ The Challenge: Not all features were on the same scale. Time was measured in sec
 The Solution: Applied RobustScaler to Time and Amount variables
 
 Why RobustScaler? It uses median and interquartile range instead of mean and standard deviation
+
 Benefit: Outliers don't throw off the scaling (critical when you have transactions ranging from €0 to €25,691)
 
 Step 2: Tackling the Elephant in the Room—Class Imbalance
@@ -102,7 +103,8 @@ Best setup: 50 trees, unlimited depth
 
 Step 4: Smart Evaluation
 I used 5-Fold Stratified Cross-Validation with GridSearchCV to find optimal hyperparameters while ensuring every validation fold maintained the same fraud ratio.
-Metrics that actually matter for fraud detection:
+
+#### Metrics:
 
 🎯 Recall (Priority #1): What % of fraud do we catch?
 📈 ROC-AUC (Priority #2): How well do we rank fraud vs. legitimate?
