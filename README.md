@@ -1,5 +1,5 @@
-# CSC-DSCI-4740-6740-Credit-Card-Fraud-Detection
-Final project for GSU CSC/DSCI-4740/6740
+Credit-Card-Fraud-Detection
+
 
 ## About:
 This is an outlier detection data mining project for detecting fraudulant credit card transactions in a dataset of numerous labeled credit card transactions.
