@@ -31,8 +31,14 @@ The sweet spot? A model that finds the real criminals without crying wolf on hon
 ## 📊 The Dataset
 
 284,807 transactions from European cardholders over two days in September 2013
-MetricValueTotal Transactions284,807Fraudulent Cases492 (0.17%)Features30 numerical variablesPrivacy ProtectionOriginal features transformed via PCA
-What the Data Revealed
+
+Metric                            Value  
+Total Transactions                284,807
+Fraudulent Cases                  492 (0.17%)
+Features                          30 numerical variables
+Privacy Protection                Original features transformed via PCA
+
+### What the Data Revealed? 
 
 Fraudulent transactions: Median value of €9.25 (many small purchases)
 Legitimate transactions: Median value of €22.00
@@ -41,6 +47,7 @@ Surprise finding: Large transactions aren't automatically suspicious—the bigge
 The takeaway? Fraudsters often fly under the radar with small amounts.
 
 ## 🛠️ How I Built This
+
 Step 1: Preparing the Data
 The Challenge: Not all features were on the same scale. Time was measured in seconds, amounts in euros, and PCA components were already normalized.
 
@@ -50,19 +57,21 @@ Why RobustScaler? It uses median and interquartile range instead of mean and sta
 Benefit: Outliers don't throw off the scaling (critical when you have transactions ranging from €0 to €25,691)
 
 Step 2: Tackling the Elephant in the Room—Class Imbalance
-With only 0.17% fraud cases, any model could achieve 99.8% accuracy by simply predicting "legitimate" for everything. Useless.
+With only 0.17% fraud cases, any model could achieve 99.8% accuracy by simply predicting "legitimate" for everything.
+
 I tested three different sampling strategies:
-🎲 Strategy 1: Fully Balanced (1:1)
+
+#### 🎲 Strategy 1: Fully Balanced (1:1)
 
 492 fraud + 492 non-fraud cases
 Forces the model to learn fraud patterns equally
 
-⚖️ Strategy 2: Semi-Balanced (1:2)
+#### ⚖️ Strategy 2: Semi-Balanced (1:2)
 
 492 fraud + 984 non-fraud cases
 Balances learning with realistic data representation
 
-## 🌍 Strategy 3: Original Dataset
+#### 🌍 Strategy 3: Original Dataset
 
 All 284,807 transactions as-is
 Real-world conditions benchmark
@@ -70,21 +79,21 @@ Real-world conditions benchmark
 Step 3: Building and Optimizing Models
 I trained and compared three industry-standard algorithms:
 
-🔵 Logistic Regression
+#### 🔵 Logistic Regression
 The interpretable workhorse
 
 Strength: Highest fraud detection rates, easy to explain to stakeholders
 Trade-off: Needs careful hyperparameter tuning
 Best setup: C=1, L1 regularization
 
-🟢 Support Vector Machine (SVM)
+#### 🟢 Support Vector Machine (SVM)
 The precision specialist
 
 Strength: Fewest false alarms across all tests
 Trade-off: Slightly misses more fraud cases
 Best setup: Linear kernel for semi-balanced, RBF for balanced data
 
-🟠 Random Forest
+#### 🟠 Random Forest
 The consistent performer
 
 Strength: Best overall balance, most stable across scenarios
@@ -104,10 +113,17 @@ Note: Accuracy is practically meaningless here—even a terrible model gets 99.8
 
 ## 📈 Results That Tell a Story
 
-The Winning Combination
-Random Forest trained on semi-balanced data emerged as the champion across most scenarios.
-Test ScenarioAccuracyPrecisionRecallF1-ScoreROC-AUCBalanced Test Set95.3%99.3%91.2%95.1%99.2%Semi-Balanced Test94.1%99.2%83.1%90.4%95.9%Original Imbalanced99.0%13.4%88.5%23.2%97.7%
-What These Numbers Mean in Reality
+#### The winning  Combination: 
+
+Random Forest trained on semi-balanced data had the best performance across most scenarios.
+
+Test Scenario            Accuracy         Precision            Recall         F1-Score       ROC-AUC    
+Balanced Test Set        95.3%            99.3%                91.2%          95.1%          99.2%
+Semi-Balanced Test       94.1%            99.2%                83.1%          90.4%          95.9%
+Original Imbalanced      99.0%            13.4%                88.5%          23.2%          97.7%
+
+#### What These Numbers Mean in Reality
+
 On the balanced test set (best-case scenario):
 
 Catches 91 out of 100 fraudulent transactions ✅
@@ -126,7 +142,6 @@ High accuracy = The model correctly predicts most transactions (because most are
 Low precision = When the model flags fraud, it's often wrong (too many false alarms)
 Still high recall = It catches most real fraud cases
 
-The lesson: In fraud detection, accuracy lies. ROC-AUC and recall tell the truth.
 
 ## 💼 Business Impact
 
@@ -137,7 +152,9 @@ Why this approach wins:
 ✅ Maintains manageable false positive rates for operations teams
 ✅ Generalizes well to real-world imbalanced conditions
 ✅ ROC-AUC above 97% means reliable fraud ranking
-Real-World Implementation Ideas
+
+## Real-World Implementation Ideas
+
 🎚️ Adjustable Thresholds
 
 Lower threshold during high-risk periods (holidays, sales events) → catch more fraud
