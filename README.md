@@ -26,7 +26,7 @@ This project tackles one of the toughest challenges in financial security: **ide
 
 ## 💡 Why This Matters
 
-Credit card fraud isn't just a statistic—it's real money lost and customer trust damaged. Financial institutions face a constant battle:
+Credit card fraud isn't just a statistic — it's real money lost and customer trust damaged. Financial institutions face a constant battle:
 
 **Catch too few fraudsters** → Customers lose money, trust erodes
 
